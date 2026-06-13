@@ -188,7 +188,7 @@ export default function HeroSection() {
       {/* Scroll indicator */}
       <div
         ref={scrollIndicatorRef}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-0"
+        className="absolute bottom-20 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-0"
       >
         <span className="font-elegant text-sm text-white/60 tracking-widest uppercase">
           Desliza
