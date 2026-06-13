@@ -60,8 +60,19 @@ export default function PhotoTimeline() {
       if (!card) return;
 
       const isEven = index % 2 === 0;
+      const img = card.querySelector('img');
+      const overlay = card.querySelector('.polaroid-reveal');
 
-      gsap.fromTo(
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 85%',
+          end: 'top 40%',
+          toggleActions: 'play none none reverse',
+        }
+      });
+
+      tl.fromTo(
         card,
         {
           opacity: 0,
@@ -73,22 +84,33 @@ export default function PhotoTimeline() {
         {
           opacity: 1,
           y: 0,
-          rotateY: 0,
+          rotateY: index % 3 === 0 ? -2 : 2, // Slight random tilt
           rotateX: 0,
           scale: 1,
           duration: 1.2,
           ease: 'power3.out',
-          scrollTrigger: {
-            trigger: card,
-            start: 'top 85%',
-            end: 'top 40%',
-            toggleActions: 'play none none reverse',
-          },
         }
       );
 
+      // "Developing" effect
+      if (overlay) {
+        tl.to(overlay, {
+          opacity: 0,
+          duration: 2,
+          ease: 'power1.inOut'
+        }, "-=0.8");
+      }
+
+      if (img) {
+        tl.fromTo(img, 
+          { filter: 'grayscale(100%) brightness(200%)' },
+          { filter: 'grayscale(0%) brightness(100%)', duration: 2.5, ease: 'none' },
+          "-=2"
+        );
+      }
+
       // Parallax on scroll
-      gsap.to(card.querySelector('.photo-inner'), {
+      gsap.to(card, {
         y: -30,
         ease: 'none',
         scrollTrigger: {
@@ -106,99 +128,57 @@ export default function PhotoTimeline() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative py-24 px-4">
-      {/* Section background effects */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-0 w-96 h-96 bg-pink-100/30 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/3 right-0 w-96 h-96 bg-rose-100/30 rounded-full blur-3xl" />
-      </div>
-
+    <section ref={sectionRef} className="relative py-24 px-4 bg-pink-50/20">
       <div className="relative z-10 max-w-6xl mx-auto">
         {/* Section title */}
         <div className="text-center mb-20">
-          <div className="flex items-center justify-center gap-4 mb-6">
-            <div className="h-px w-20 bg-gradient-to-r from-transparent to-pink-300/60" />
-            <span className="text-3xl sparkle">📸</span>
-            <div className="h-px w-20 bg-gradient-to-l from-transparent to-pink-300/60" />
-          </div>
           <h2
             ref={titleRef}
             className="font-script text-4xl sm:text-5xl md:text-6xl gradient-text opacity-0"
           >
-            Nuestros momentos más bonitos
+            Nuestros momentos inolvidables
           </h2>
-          <div className="mt-6 flex items-center justify-center gap-2 text-pink-400/60">
-            <span className="font-elegant text-sm tracking-widest uppercase">
-              Cada foto es un recuerdo de nuestro amor
-            </span>
-          </div>
+          <p className="mt-4 font-elegant text-sm text-pink-400/60 uppercase tracking-widest">
+            Un álbum de recuerdos de nuestra historia
+          </p>
         </div>
 
-        {/* Timeline line */}
-        <div className="relative">
-          {/* Central line - hidden on mobile */}
-          <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-pink-200/0 via-pink-300/40 to-pink-200/0 -translate-x-1/2" />
-
-          {/* Photo cards */}
-          <div className="space-y-16 md:space-y-24">
-            {PHOTOS.map((photo, index) => {
-              const isEven = index % 2 === 0;
-              return (
-                <div
-                  key={index}
-                  ref={(el) => { cardsRef.current[index] = el; }}
-                  className={`relative flex flex-col md:flex-row items-center gap-8 opacity-0 ${
-                    isEven ? 'md:flex-row' : 'md:flex-row-reverse'
-                  }`}
-                  style={{ perspective: '1000px' }}
-                >
-                  {/* Timeline dot */}
-                  <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 z-20">
-                    <div className="w-4 h-4 rounded-full bg-pink-400 shadow-lg shadow-pink-400/30 heartbeat" />
-                  </div>
-
-                  {/* Photo container */}
-                  <div
-                    className={`w-full md:w-1/2 ${
-                      isEven ? 'md:pr-12' : 'md:pl-12'
-                    }`}
-                  >
-                    <div className="photo-inner">
-                      <div className="photo-frame rounded-2xl overflow-hidden bg-white">
-                        <div className="relative overflow-hidden">
-                          <img
-                            src={photo.url}
-                            alt={photo.caption}
-                            className="w-full aspect-[4/3] object-cover transition-transform duration-700 hover:scale-110"
-                            loading="lazy"
-                          />
-                          {/* Photo overlay gradient */}
-                          <div className="absolute inset-0 bg-gradient-to-t from-pink-500/10 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500" />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Caption */}
-                  <div
-                    className={`w-full md:w-1/2 text-center ${
-                      isEven ? 'md:text-left md:pl-12' : 'md:text-right md:pr-12'
-                    }`}
-                  >
-                    <div className="flex items-center gap-3 justify-center md:justify-start">
-                      <span className="font-elegant text-sm text-pink-400/60">
-                        {String(index + 1).padStart(2, '0')}
-                      </span>
-                      <div className="h-px w-8 bg-pink-200/40" />
-                    </div>
-                    <p className="font-script text-2xl sm:text-3xl text-rose-500 mt-3">
-                      {photo.caption}
-                    </p>
-                  </div>
+        {/* Polaroid Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16">
+          {PHOTOS.map((photo, index) => (
+            <div
+              key={index}
+              ref={(el) => { cardsRef.current[index] = el; }}
+              className="group opacity-0"
+              style={{ perspective: '1000px' }}
+            >
+              {/* Polaroid Frame */}
+              <div className="bg-white p-4 pb-12 shadow-2xl transition-transform duration-500 group-hover:scale-105 group-hover:-rotate-1">
+                <div className="relative aspect-square overflow-hidden bg-gray-100 mb-6">
+                  <img
+                    src={photo.url}
+                    alt={photo.caption}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                  {/* Polaroid Reveal Overlay (the "film" developing) */}
+                  <div className="polaroid-reveal absolute inset-0 bg-white z-10" />
                 </div>
-              );
-            })}
-          </div>
+                
+                {/* Handwritten Caption */}
+                <div className="text-center">
+                  <p className="font-script text-2xl text-gray-700">
+                    {photo.caption}
+                  </p>
+                </div>
+                
+                {/* Fingerprint decoration */}
+                <div className="absolute bottom-2 right-4 opacity-10 text-xl grayscale pointer-events-none">
+                  👆
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>

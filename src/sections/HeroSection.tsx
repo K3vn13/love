@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
+import confetti from 'canvas-confetti';
 
 export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -10,6 +11,45 @@ export default function HeroSection() {
 
   useEffect(() => {
     const timer = setTimeout(() => setIsLoaded(true), 500);
+
+    // Birthday Confetti Animation
+    const duration = 5 * 1000;
+    const animationEnd = Date.now() + duration;
+    const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 0 };
+
+    const randomInRange = (min: number, max: number) => Math.random() * (max - min) + min;
+
+    const interval: any = setInterval(function() {
+      const timeLeft = animationEnd - Date.now();
+
+      if (timeLeft <= 0) {
+        return clearInterval(interval);
+      }
+
+      const particleCount = 50 * (timeLeft / duration);
+      
+      // Since particles fall down, start them higher than random
+      confetti({
+        ...defaults,
+        particleCount,
+        origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+        colors: ['#ff69b4', '#ff1493', '#ffc0cb', '#ffffff']
+      });
+      confetti({
+        ...defaults,
+        particleCount,
+        origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+        colors: ['#ff69b4', '#ff1493', '#ffc0cb', '#ffffff']
+      });
+    }, 250);
+
+    // Initial big burst
+    confetti({
+      particleCount: 150,
+      spread: 70,
+      origin: { y: 0.6 },
+      colors: ['#ff69b4', '#ff1493', '#ffc0cb', '#ffffff']
+    });
 
     // Title animation
     if (titleRef.current) {
@@ -64,7 +104,10 @@ export default function HeroSection() {
       });
     }
 
-    return () => clearTimeout(timer);
+    return () => {
+      clearTimeout(timer);
+      clearInterval(interval);
+    };
   }, []);
 
   return (

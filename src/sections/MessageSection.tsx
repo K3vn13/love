@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import RelationshipTimer from '../components/RelationshipTimer';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -139,6 +140,9 @@ export default function MessageSection() {
           <span className="text-xl float" style={{ animationDelay: '0.5s' }}>💕</span>
           <span className="text-2xl float" style={{ animationDelay: '1s' }}>🌹</span>
         </div>
+
+        {/* Relationship Timer */}
+        <RelationshipTimer />
       </div>
     </section>
   );
