@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import HeartParticles from './sections/HeartParticles';
 import HeroSection from './sections/HeroSection';
 import MessageSection from './sections/MessageSection';
