@@ -10,21 +10,21 @@ interface PhotoData {
 }
 
 const PHOTOS: PhotoData[] = [
-  { url: 'https://drive.google.com/uc?export=view&id=1LgmTrtV8SP5C-cPxF9-sfco33i_nTNiM', caption: 'Primer momento juntos' },
-  { url: 'https://drive.google.com/uc?export=view&id=1gxMEopDRmKKBlLEVRN-cUyUnVNA37SuF', caption: 'Ese día inolvidable' },
-  { url: 'https://drive.google.com/uc?export=view&id=1ScuwnMG2mw4du4lvtnHgAFWp48HmdRw1', caption: 'Contigo todo es mejor' },
-  { url: 'https://drive.google.com/uc?export=view&id=16JkIsMCT5GM_8KF10V3ssWLP1ZyKALEJ', caption: 'Sonrisas que lo dicen todo' },
-  { url: 'https://drive.google.com/uc?export=view&id=11oQ06LKaamJ-IVnBIaNG2yqEZ8euVke4', caption: 'Te miro y me enamoro más' },
-  { url: 'https://drive.google.com/uc?export=view&id=1zgDkMwbP6SBWW1uKn6fHl9tUoFSFd0IJ', caption: 'Nuestro mundo perfecto' },
-  { url: 'https://drive.google.com/uc?export=view&id=17NHgBz_UijSlRSBibnzsDzRwo4FnsrmD', caption: 'Contigo el tiempo vuela' },
-  { url: 'https://drive.google.com/uc?export=view&id=1-UTlvzGMQsbMgvY20qWGvRQH-i_7AgX8', caption: 'Amor en cada foto' },
-  { url: 'https://drive.google.com/uc?export=view&id=1yfxF35GuxnKOFzNuaCY1Q9uAIWncXlzY', caption: 'Mi persona favorita' },
-  { url: 'https://drive.google.com/uc?export=view&id=1nvDhs5jzD96Rh6-F2TnZagKjsEna1_rg', caption: 'Felices juntos' },
-  { url: 'https://drive.google.com/uc?export=view&id=1lNTxhWA4Hbbi2LxjKAySXcQQHPdyyl8v', caption: 'Siempre juntos' },
-  { url: 'https://drive.google.com/uc?export=view&id=1pDRdJxhtxycRTBrfVK5ceK38kbLkRp-v', caption: 'Mi refugio' },
-  { url: 'https://drive.google.com/uc?export=view&id=1tRX38sIoUi3kIyCaa5Q16TZtTwB5DBPa', caption: 'Te amo más cada día' },
-  { url: 'https://drive.google.com/uc?export=view&id=1cACl17F1-Vnr5k_pmhOH9uYfINvuqmsO', caption: 'Momentos mágicos' },
-  { url: 'https://drive.google.com/uc?export=view&id=16iPr8Diz-4ZtpkaYlDv6fmzDRIjeCsEU', caption: 'Besándonos en la playa... el mejor final ❤️' },
+  { url: 'https://lh3.googleusercontent.com/d/1LgmTrtV8SP5C-cPxF9-sfco33i_nTNiM', caption: 'Primer momento juntos' },
+  { url: 'https://lh3.googleusercontent.com/d/1gxMEopDRmKKBlLEVRN-cUyUnVNA37SuF', caption: 'Ese día inolvidable' },
+  { url: 'https://lh3.googleusercontent.com/d/1ScuwnMG2mw4du4lvtnHgAFWp48HmdRw1', caption: 'Contigo todo es mejor' },
+  { url: 'https://lh3.googleusercontent.com/d/16JkIsMCT5GM_8KF10V3ssWLP1ZyKALEJ', caption: 'Sonrisas que lo dicen todo' },
+  { url: 'https://lh3.googleusercontent.com/d/11oQ06LKaamJ-IVnBIaNG2yqEZ8euVke4', caption: 'Te miro y me enamoro más' },
+  { url: 'https://lh3.googleusercontent.com/d/1zgDkMwbP6SBWW1uKn6fHl9tUoFSFd0IJ', caption: 'Nuestro mundo perfecto' },
+  { url: 'https://lh3.googleusercontent.com/d/17NHgBz_UijSlRSBibnzsDzRwo4FnsrmD', caption: 'Contigo el tiempo vuela' },
+  { url: 'https://lh3.googleusercontent.com/d/1-UTlvzGMQsbMgvY20qWGvRQH-i_7AgX8', caption: 'Amor en cada foto' },
+  { url: 'https://lh3.googleusercontent.com/d/1yfxF35GuxnKOFzNuaCY1Q9uAIWncXlzY', caption: 'Mi persona favorita' },
+  { url: 'https://lh3.googleusercontent.com/d/1nvDhs5jzD96Rh6-F2TnZagKjsEna1_rg', caption: 'Felices juntos' },
+  { url: 'https://lh3.googleusercontent.com/d/1lNTxhWA4Hbbi2LxjKAySXcQQHPdyyl8v', caption: 'Siempre juntos' },
+  { url: 'https://lh3.googleusercontent.com/d/1pDRdJxhtxycRTBrfVK5ceK38kbLkRp-v', caption: 'Mi refugio' },
+  { url: 'https://lh3.googleusercontent.com/d/1tRX38sIoUi3kIyCaa5Q16TZtTwB5DBPa', caption: 'Te amo más cada día' },
+  { url: 'https://lh3.googleusercontent.com/d/1cACl17F1-Vnr5k_pmhOH9uYfINvuqmsO', caption: 'Momentos mágicos' },
+  { url: 'https://lh3.googleusercontent.com/d/16iPr8Diz-4ZtpkaYlDv6fmzDRIjeCsEU', caption: 'Besándonos en la playa... el mejor final ❤️' },
 ];
 
 export default function PhotoTimeline() {

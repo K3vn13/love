@@ -72,30 +72,27 @@ export default function HeroSection() {
       ref={sectionRef}
       className="relative w-full h-screen overflow-hidden flex items-center justify-center"
     >
-      {/* Video Background */}
-      <video
-        className="absolute inset-0 w-full h-full object-cover"
-        autoPlay
-        muted
-        loop
-        playsInline
-        onLoadedData={() => setIsLoaded(true)}
-      >
-        <source
-          src="https://drive.google.com/uc?export=download&id=1fjsyxAJi2erDEhZEM4wqTd-WztE4hj9w"
-          type="video/mp4"
+      {/* Background Image/GIF */}
+      <div className="absolute inset-0 w-full h-full">
+        <img
+          src="/assets/principal.gif"
+          alt="Hero Background"
+          className={`w-full h-full object-cover transition-opacity duration-1000 ${
+            isLoaded ? 'opacity-100' : 'opacity-0'
+          }`}
+          onLoad={() => setIsLoaded(true)}
         />
-      </video>
+      </div>
 
       {/* Cinematic overlays */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/70" />
+      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/80" />
       <div className="absolute inset-0 bg-gradient-to-r from-black/20 via-transparent to-black/20" />
 
       {/* Vignette effect */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
-          boxShadow: 'inset 0 0 150px 60px rgba(0,0,0,0.4)',
+          boxShadow: 'inset 0 0 150px 60px rgba(0,0,0,0.5)',
         }}
       />
 
